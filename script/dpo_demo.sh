@@ -40,6 +40,7 @@ DS_DTYPE="fp16" # [fp16, bf16]
 RESUME="False"
 
 # 数据
+# 数据集参考：https://www.modelscope.cn/datasets/wdndev/tiny_llm_dataset
 MODE="rl" # [ptm, sft, rm, rl]
 DATASET_DIR_OR_PATH="data/rl_train/rl_train_data.jsonl"
 BASE_MODEL_PATH="outputs/ckpt/sft_tiny_llm_92m_epoch5/last_sft_model"
