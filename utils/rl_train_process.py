@@ -12,6 +12,7 @@ def merge_datsets(input_dir):
     for subdir, dirs, files in os.walk(input_dir):
         for idx, file in enumerate(files):
             # 只处理txt文件
+            # 数据集有字段prompt,pos_resp,neg_resp,pos_type,neg_type四个字段，仅使用前三个字段即可
             if file.endswith('.jsonl'):
                 # 获取当前文件的绝对路径
                 file_path = os.path.join(subdir, file)
@@ -38,6 +39,7 @@ def merge_datsets(input_dir):
 
             if file.endswith('.parquet'):
                 # 获取当前文件的绝对路径
+                # parquet数据格式，数据仅有prompt，chosen，rejected三个字段
                 file_path = os.path.join(subdir, file)
                 print(file_path)
                 # 读取jsonl文件
@@ -59,6 +61,8 @@ def merge_datsets(input_dir):
     
             if file.endswith('.tsv'):
                 # 获取当前文件的绝对路径
+                # tsv文件中有question_id,upvotes_chosen,upvotes_rejected,prompt,chosen,rejected六个字段
+                # 代码仅取出prompt,chosen,rejected三个字段
                 file_path = os.path.join(subdir, file)
                 print(file_path)
                 # 读取jsonl文件

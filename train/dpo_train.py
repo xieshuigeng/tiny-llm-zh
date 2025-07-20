@@ -206,6 +206,7 @@ if __name__ == "__main__":
     # )
 
     # 5. initialize the DPO trainer
+    # 参考：https://huggingface.co/docs/trl/main/en/dpo_trainer#preference
     dpo_trainer = DPOTrainer(
         model,
         ref_model=None,

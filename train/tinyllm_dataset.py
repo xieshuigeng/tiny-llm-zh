@@ -487,6 +487,8 @@ def load_dpo_dataset(
         # assistant_chosen_txt = examples["chosen"]
         # assistant_rejected_txt = examples["rejected"]
 
+        # 生成ChatML格式数据：<|system|>You are a helpful assistant.<|user|>这是什么？<|assistant|>
+        # 参考下面的链接：https://huggingface.co/docs/trl/main/en/dpo_trainer#preference
         prompt_list = []
         for question in examples["prompt"]:
             prompt ="\n".join(["<|system|>", system.strip(), 
@@ -513,6 +515,7 @@ def load_dpo_dataset(
         remove_columns=original_columns,
     )
 
+    # 只保留长度（token 数）符合要求的样本，确保不会超出模型最大上下文限制。
     dataset_map = dataset_map.filter(
         lambda x: len(x["prompt"]) + len(x["chosen"]) <= max_length
         and len(x["prompt"]) + len(x["rejected"]) <= max_length
